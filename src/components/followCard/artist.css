@@ -1,0 +1,95 @@
+.artist-card-inner{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    transition: width 300ms, height 300ms, margin 300ms
+}
+.artist-card-inner h5{
+    text-align: center;
+}
+.artist-card-inner img{
+    height:100px;
+    width:100px;
+    border-radius: 20px;
+    box-shadow: 1px 2px 20px grey;
+}
+
+.card-click{
+    width: 100%;
+    height:100%;
+    position: relative;
+    transition: width 500ms cubic-bezier(0, -0.02, 0, 1.49), height 200ms ease-in-out,top 1100ms ease-in-out, right 1100ms ease-in-out
+
+}
+.card-click.flipped{
+    width: 99.3vw;
+    height: 120vh;
+    position: absolute;
+    background: rgb(22 22 22 / 72%);
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    transition: width 500ms cubic-bezier(0, -0.02, 0, 1.49), height 200ms ease-in-out, top 1100ms ease-in-out, right 1100ms ease-in-out;
+    z-index: 100;
+}
+
+.card-click.flipped .artist-card-inner{
+    background: white;
+    margin: 10% auto;
+    width: 500px;
+    height: 500px;
+    transition: width 300ms, height 300ms, margin 300ms;
+    border-radius: 20px;
+}
+
+.flipped-card-row{
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    width: 99%;
+    padding: 2px;
+    margin: 5px;
+}
+.flipped-card-row.center{
+    justify-content: center;
+    align-items: center;
+}
+.flipped-card-value{
+    padding: 10px;
+    
+}
+
+.flipped-card-heading{
+    padding: 10px;
+    min-width: 100px;
+    white-space: nowrap;
+}
+
+.open-spotify-button{
+    background: var(--main-green);
+    padding:15px;
+    font-size: 1rem;
+}
+.open-spotify-button a{
+    text-decoration: none;
+    color: white;
+}
+
+.close{
+    position: absolute;
+    margin-left: 450px;
+    height: 17px;
+    width: 17px;
+    margin-top:12px;
+    border: 1px solid;
+    border-radius: 50%;
+    color: white;
+    background: black;
+    font-weight: 400;
+}
+
+.close-inner{
+    transform: scale(1, 0.8) translatey(-4px) translateX(3.5px);
+
+
+}
