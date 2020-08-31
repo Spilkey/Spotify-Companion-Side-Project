@@ -1,0 +1,49 @@
+.artist-card:hover {
+    border: 1px rgb(163, 163, 163);
+    box-shadow: 1px 2px 10px rgb(163, 163, 163);
+    padding: 10px;
+    transition: padding 400ms ease-in-out ,box-shadow 400ms ease-in-out, border 400ms ease-in-out;
+    cursor: pointer;
+    
+}
+.artist-card:active, .artist-card:focus{
+    outline: none;
+}
+
+
+
+.artist-card{
+    transition: padding 400ms ease-in-out ,box-shadow 400ms ease-in-out, border 400ms ease-in-out;
+    padding: 20px
+}
+
+.artist-grid{
+    display: grid;
+    grid-column-start: 2;
+    grid-column-end: 5;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    grid-template-columns: repeat(6, 1fr [col-start]);
+    grid-gap: 20px;
+    grid-auto-rows: 200px 200px;
+    margin: 10px 20%
+}
+
+
+@media(max-width: 991px){
+    .artist-grid{
+        margin: 10px 20px;
+        grid-template-columns: repeat(4, 1fr [col-start]);
+    }
+}
+@media(max-width: 600px){
+    .artist-grid{
+        grid-template-columns: repeat(3, 1fr [col-start]);
+    }
+}
+
+@media(max-width: 425px){
+    .artist-grid{
+        grid-template-columns: repeat(2, 1fr [col-start]);
+    }
+}
