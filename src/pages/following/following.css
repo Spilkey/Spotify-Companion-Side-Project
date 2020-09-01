@@ -8,6 +8,7 @@
 }
 .artist-card:active, .artist-card:focus{
     outline: none;
+    box-shadow: 1px 2px 10px rgb(163, 163, 163);
 }
 
 
@@ -29,21 +30,39 @@
     margin: 10px 20%
 }
 
+.bottom-buttons{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+}
+
+.bottom-buttons button{
+    border-radius: 50%;
+    border: unset;
+    background: #ccc;
+    font-size: 2rem;
+    height: 40px;
+    width: 40px;
+    transition: box-shadow 200ms ease-in;
+}
+.bottom-buttons button:hover{
+    box-shadow: 1px 2px 20px rgb(95, 95, 95);
+    transition: box-shadow 200ms ease-in;
+    cursor: pointer;
+}
+
 
 @media(max-width: 991px){
     .artist-grid{
         margin: 10px 20px;
-        grid-template-columns: repeat(4, 1fr [col-start]);
+        grid-template-columns: repeat(3, 1fr [col-start]);
     }
 }
 @media(max-width: 600px){
     .artist-grid{
-        grid-template-columns: repeat(3, 1fr [col-start]);
-    }
-}
-
-@media(max-width: 425px){
-    .artist-grid{
         grid-template-columns: repeat(2, 1fr [col-start]);
     }
 }
+
