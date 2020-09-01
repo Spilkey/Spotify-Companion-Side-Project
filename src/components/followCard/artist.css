@@ -22,7 +22,7 @@
 
 }
 .card-click.flipped{
-    width: 99.3vw;
+    width: 100vw;
     height: 120vh;
     position: absolute;
     background: rgb(22 22 22 / 72%);
@@ -37,7 +37,8 @@
 .card-click.flipped .artist-card-inner{
     background: white;
     margin: 10% auto;
-    width: 500px;
+    max-width: 500px;
+    width: 100vw;
     height: 500px;
     transition: width 300ms, height 300ms, margin 300ms;
     border-radius: 20px;
@@ -90,6 +91,10 @@
 
 .close-inner{
     transform: scale(1, 0.8) translatey(-4px) translateX(3.5px);
+}
 
-
+@media(max-width: 500px){
+    .close{
+        margin-left: 80vw;
+    }
 }
