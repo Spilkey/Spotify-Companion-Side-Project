@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import ArtistCard from '../../components/followCard/ArtistCard'
 
-import Followed from '../../models/getFollowedArtisted'
+import Followed from '../../models/Followed'
 
 import '../../components/spinner.css'
 import './following.css'
@@ -29,13 +29,13 @@ class Following extends Component {
         followModel.getFollowedArtists()
             .then(data => {
                 let pageNum = this.beforeStack.length + 1;
-                let after = data.data.after;
+                let nextArtist = data.data.after;
                 let current = data.data.current;
                 let total = data.data.total;
 
                 this.setState({ artistData: data, 
                                 dataLoaded: true, 
-                                after: after, 
+                                after: nextArtist, 
                                 current: current, 
                                 pageNum: pageNum, 
                                 total: total});

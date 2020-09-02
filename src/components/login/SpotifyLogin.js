@@ -26,7 +26,7 @@ class SpotifyLogin extends Component {
     }
 
     onBtnClick = () => {
-        const { clientId, scope, redirectUri } = this.props;
+        const { clientId, redirectUri } = this.props;
         const search = toQuery({
             client_id: clientId,
             response_type: 'code',
