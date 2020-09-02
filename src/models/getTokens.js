@@ -14,13 +14,13 @@ class Tokens {
     }
 
     async getToken(code){
-        const response = await fetch("http://localhost:8888/swap?code=" + code, this.requestParams);
+        const response = await fetch("http://localhost:8888/auth/swap?code=" + code, this.requestParams);
         let credentials = await response.json();
         return credentials;
     }
 
     async refreshToken(refresh) {
-        const response = await fetch("http://localhost:8888/refresh_token?refresh_token=" + refresh, this.requestParams);
+        const response = await fetch("http://localhost:8888/auth/refresh_token?refresh_token=" + refresh, this.requestParams);
         let credentialsNew = await response.json();
         return credentialsNew;
     }

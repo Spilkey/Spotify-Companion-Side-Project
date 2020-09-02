@@ -4,7 +4,7 @@ class UserProfile {
 
       }
     async getProfile(){
-        const response = await fetch("http://localhost:8888/login?token=" + this.authToken,
+        const response = await fetch("http://localhost:8888/profile/login?token=" + this.authToken,
         {
             method: 'GET', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin
