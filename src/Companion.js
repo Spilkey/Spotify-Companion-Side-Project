@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
 // Router
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
 // Components
-import SpotifyLogin from './components/login/Login';
+import SpotifyLogin from './components/login/SpotifyLogin';
 
 // Client Settings
 import { clientId, redirectUri } from './settings';
 
 // CSS
-import logo from './logo.svg';
 import './App.css';
 
 // Pages
@@ -19,9 +17,9 @@ import Home from './pages/home/Home'
 import Following from './pages/following/Following'
 
 // Models 
-import UserProfile from './models/getUserProfile'
-import Tokens from './models/getTokens'
-import Storage from './models/storageManager'
+import UserProfile from './models/UserProfile'
+import Tokens from './models/Tokens'
+import Storage from './models/Storage'
 
 class Companion extends Component {
 

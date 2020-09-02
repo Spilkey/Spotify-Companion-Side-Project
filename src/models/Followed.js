@@ -1,4 +1,4 @@
-import Storage from './storageManager'
+import Storage from './Storage'
 class Followed {
     constructor(after){
         this.requestParams = {
