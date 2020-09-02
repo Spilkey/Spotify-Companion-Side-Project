@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import PopupWindow from './Popup';
+import PopupWindow from './PopupWindow';
 import { toQuery } from './utils';
 
 class SpotifyLogin extends Component {
