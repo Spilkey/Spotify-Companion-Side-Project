@@ -1,0 +1,11 @@
+.play-list-grid{
+    display: grid;
+    grid-column-start: 2;
+    grid-column-end: 5;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    grid-template-columns: repeat(4, 1fr [col-start]);
+    grid-gap: 20px;
+    grid-auto-rows: 200px 200px;
+    margin: 10px 20%
+}
