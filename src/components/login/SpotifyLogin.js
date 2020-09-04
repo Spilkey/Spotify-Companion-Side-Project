@@ -30,7 +30,7 @@ class SpotifyLogin extends Component {
         const search = toQuery({
             client_id: clientId,
             response_type: 'code',
-            scope: "user-read-private user-read-email user-follow-read",
+            scope: "user-read-private user-read-email user-follow-read user-library-read ",
             state: "123",
             redirect_uri: redirectUri,
 

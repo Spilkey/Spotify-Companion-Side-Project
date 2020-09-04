@@ -15,6 +15,7 @@ import './App.css';
 // Pages
 import Home from './pages/home/Home'
 import Following from './pages/following/Following'
+import Playlists from './pages/playlists/Playlists'
 
 // Models 
 import UserProfile from './models/UserProfile'
@@ -76,7 +77,7 @@ class Companion extends Component {
 
     onFailure = response => console.error(response);
 
-    componentWillMount() {
+    componentDidMount() {
         if (this.state.isAuthed) {
             this.callAPI();
         }
@@ -102,12 +103,14 @@ class Companion extends Component {
                             <div>
                                 <Link to={`/`}>Home</Link>
                                 <Link to={`/following`}>Following</Link>
+                                <Link to={'/playlists'}>Playlists</Link>
                             </div>
                             <a onClick={this.logout}>Logout</a>
                         </div>
                         <main>
                             <Route exact path="/" component={() => <Home profile={profile} data={detailedProfile}/>} />
                             <Route exact path="/following" component={() => <Following profile={profile} />} />
+                            <Route exact path="/playlists" component={() => <Playlists />} />
                             {/* <Route path="/contacts" component={Contacts} /> */}
                         </main>
                     </div>
