@@ -5,6 +5,8 @@ import '../../components/spinner.css';
 import './playlists.css'
 
 import Playlist from '../../models/Playlist'
+import Storage from '../../models/Storage'
+import Tokens from   '../../models/Tokens'
 
 class Playlists extends Component {
     constructor(props) {
@@ -19,6 +21,14 @@ class Playlists extends Component {
         this.playListModel.getPlayLists()
             .then(data => {
                 this.setState({ playListData: data});
+                if(data.data.error){
+                    if(data.data.error.status == 401){
+                        (new Tokens()).refreshToken((new Storage()).getRefreshToken())
+                        .then(data =>(new Storage().setAccessToken(data.access_token)));
+                        this.getPlayLists();
+                    }
+                }
+                
             });
     }
 
@@ -32,6 +42,13 @@ class Playlists extends Component {
         this.playListModel.getPlayList(playListId)            
         .then(data => {
             this.setState({trackData: data });
+            if(data.data.error){
+                if(data.data.error.status == 401){
+                    (new Tokens()).refreshToken((new Storage()).getRefreshToken())
+                    .then(data =>(new Storage()).setAccessToken(data.access_token));
+                    this.playListClick(playListId);
+                }
+            }
         });
     }
 
@@ -52,6 +69,7 @@ class Playlists extends Component {
     }
 
     makeSongCards(response){
+        let rows = [];
         console.log(response);
     }
     render() {
@@ -69,7 +87,7 @@ class Playlists extends Component {
                 )
             }else{
                 if(trackData){
-
+                    this.makeSongCards(trackData);
                 }else{
                     content = loader;
                 }

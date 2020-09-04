@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import ArtistCard from '../../components/followCard/ArtistCard'
 
 import Followed from '../../models/Followed'
+import Storage from '../../models/Storage'
+import Tokens from   '../../models/Tokens'
 
 import '../../components/spinner.css'
 import './following.css'
@@ -28,6 +30,12 @@ class Following extends Component {
         let followModel = new Followed(after);
         followModel.getFollowedArtists()
             .then(data => {
+                if(data.data.error){
+                    if(data.data.error.status == 401){
+                        (new Tokens()).refreshToken((new Storage()).getRefreshToken())
+                        .then(data =>(new Storage().setAccessToken(data.access_token)));
+                    }
+                }
                 let pageNum = this.beforeStack.length + 1;
                 let nextArtist = data.data.after;
                 let current = data.data.current;
