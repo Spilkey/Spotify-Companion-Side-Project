@@ -9,3 +9,19 @@
     grid-auto-rows: 200px 200px;
     margin: 10px 20%
 }
+
+.song-row{
+    display: flex;
+}
+
+.song-row > div{
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 5px;
+}
+.song-title{
+    white-space: nowrap;
+    overflow: hidden;
+    width: 30%;
+}
+

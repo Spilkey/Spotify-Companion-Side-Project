@@ -6,12 +6,12 @@ import './playlists.css'
 
 import Playlist from '../../models/Playlist'
 import Storage from '../../models/Storage'
-import Tokens from   '../../models/Tokens'
+import Tokens from '../../models/Tokens'
 
 class Playlists extends Component {
     constructor(props) {
         super(props);
-        this.state = { playListData: null, drilledDown: false, trackData: null  };
+        this.state = { playListData: null, drilledDown: false, trackData: null };
         this._isMounted = false;
         this.playListModel = new Playlist();
     }
@@ -20,15 +20,15 @@ class Playlists extends Component {
     getPlayLists() {
         this.playListModel.getPlayLists()
             .then(data => {
-                this.setState({ playListData: data});
-                if(data.data.error){
-                    if(data.data.error.status == 401){
+                this.setState({ playListData: data });
+                if (data.data.error) {
+                    if (data.data.error.status == 401) {
                         (new Tokens()).refreshToken((new Storage()).getRefreshToken())
-                        .then(data =>(new Storage().setAccessToken(data.access_token)));
+                            .then(data => (new Storage().setAccessToken(data.access_token)));
                         this.getPlayLists();
                     }
                 }
-                
+
             });
     }
 
@@ -37,19 +37,19 @@ class Playlists extends Component {
         this.getPlayLists();
     }
 
-    playListClick(playListId){
-        this.setState({drilledDown: true})
-        this.playListModel.getPlayList(playListId)            
-        .then(data => {
-            this.setState({trackData: data });
-            if(data.data.error){
-                if(data.data.error.status == 401){
-                    (new Tokens()).refreshToken((new Storage()).getRefreshToken())
-                    .then(data =>(new Storage()).setAccessToken(data.access_token));
-                    this.playListClick(playListId);
+    playListClick(playListId) {
+        this.setState({ drilledDown: true })
+        this.playListModel.getPlayList(playListId)
+            .then(data => {
+                this.setState({ trackData: data });
+                if (data.data.error) {
+                    if (data.data.error.status == 401) {
+                        (new Tokens()).refreshToken((new Storage()).getRefreshToken())
+                            .then(data => (new Storage()).setAccessToken(data.access_token));
+                        this.playListClick(playListId);
+                    }
                 }
-            }
-        });
+            });
     }
 
     makePlayListCards(response) {
@@ -58,7 +58,7 @@ class Playlists extends Component {
         playlists.forEach(element => {
             let card = (
                 <div onClick={() => this.playListClick(element.playListId)}>
-                   <h3>{element.playListName}</h3>
+                    <h3>{element.playListName}</h3>
                     <div>Total Songs: {element.playListAmount}</div>
                     <div>Owner      : {element.playListOwner}</div>
                 </div>
@@ -68,27 +68,43 @@ class Playlists extends Component {
         return cards;
     }
 
-    makeSongCards(response){
+    makeSongCards(response) {
         let rows = [];
+        (response.data).forEach(element => {
+            let likedText = element.isLiked ? "liked" : "not liked"
+            let row = (
+                <div className="song-row">
+                    <div className="song-title">{element.name}</div>
+                    <div>{likedText}</div>
+                    <div>{element.added_at}</div>
+                </div>)
+            rows.push(row);
+        });
         console.log(response);
+        return rows;
+        
     }
     render() {
         let response = this.state.playListData;
         let trackData = this.state.trackData;
         let drilledDown = this.state.drilledDown;
         let loader = <div className="loader"></div>;
+        let parentClass = drilledDown ? "track-grid" : "play-list-grid"
         let content;
         if (response) {
-            if(!drilledDown){
+            if (!drilledDown) {
                 console.log(response);
                 let cards = this.makePlayListCards(response);
                 content = cards.map((value) =>
                     <div>{value}</div>
                 )
-            }else{
-                if(trackData){
-                    this.makeSongCards(trackData);
-                }else{
+            } else {
+                if (trackData) {
+                    let cards = this.makeSongCards(trackData);
+                    content = cards.map((value) =>
+                        <div>{value}</div>
+                    )
+                } else {
                     content = loader;
                 }
             }
@@ -98,7 +114,7 @@ class Playlists extends Component {
 
         return (
 
-            <div className="play-list-grid">
+            <div className={parentClass}>
                 {content}
             </div>
         )
