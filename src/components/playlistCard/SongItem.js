@@ -40,7 +40,7 @@ class SongItem extends Component {
         let artists = this.songData.artists;
         let displayArtists = Object.keys(artists).join(" ");
         let audioElm = (
-            <div ref={this.previewDivReference}>
+            <div className="audio-top" ref={this.previewDivReference}>
                 <audio id={this.playerId} ref={this.audioRef}>
                     <source src={this.songData.preview} type="audio/ogg"></source>
                 </audio>
