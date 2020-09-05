@@ -8,6 +8,9 @@ import Playlist from '../../models/Playlist'
 import Storage from '../../models/Storage'
 import Tokens from '../../models/Tokens'
 
+import ArtistCard from '../../components/playlistCard/PlayListCard'
+import SongItem from '../../components/playlistCard/SongItem'
+
 class Playlists extends Component {
     constructor(props) {
         super(props);
@@ -57,11 +60,7 @@ class Playlists extends Component {
         let playlists = response.data;
         playlists.forEach(element => {
             let card = (
-                <div onClick={() => this.playListClick(element.playListId)}>
-                    <h3>{element.playListName}</h3>
-                    <div>Total Songs: {element.playListAmount}</div>
-                    <div>Owner      : {element.playListOwner}</div>
-                </div>
+                <ArtistCard cardData={element} onClick={() => this.playListClick(element.playListId)}/>
             );
             cards.push(card);
         });
@@ -81,22 +80,11 @@ class Playlists extends Component {
             <div className="song-artists">Artists</div>
             <div>Added at</div>
         </div>);
+
         rows.push(topRow);
 
         (trackData).forEach(element => {
-            let likedText = element.isLiked ? <i class="fa fa-heart"></i> : <i class="fa fa-heart-o"></i>
-            let artists = element.artists;
-            let displayArtists = Object.keys(artists).join(" ") ;  
-            let row = (
-                <div className="song-row">
-                    <div className="song-checkbox-parent">
-                        <input className="song-checkbox" type="checkbox"/>  
-                    </div>
-                    <div>{likedText}</div>
-                    <div className="song-title">{element.name}</div>
-                    <div className="song-artists">{displayArtists}</div>
-                    <div>{element.added_at}</div>
-                </div>)
+            let row = (<SongItem className="song-row" songData={element} selectedItems/>)
             rows.push(row);
         });
         console.log(response);
