@@ -1,0 +1,33 @@
+.play-button{
+    font-family: FontAwesome !important;
+    border:unset;
+    background-color: transparent;
+}
+
+.pause-button{
+    font-family: FontAwesome !important;
+    border: unset;
+    background-color: transparent;
+
+}
+
+.pause-button:hover,
+.play-button:hover{
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.pause-button:after{
+    content:"\f04c";
+}
+
+.play-button:after{
+    content: "\f04b";
+}
+
+.audio-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 20px !important;
+}

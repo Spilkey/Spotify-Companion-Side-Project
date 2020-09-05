@@ -1,0 +1,21 @@
+.volume-animated:after{
+    animation: volume-change 3s linear infinite;
+    content:"\f026"
+}
+
+.volume-animated{
+    font-family: FontAwesome !important;
+} 
+
+@keyframes volume-change{
+    0% {
+        content:"\f026"
+    }
+    50%{
+        content:"\f027"
+    }
+    100%{
+        content:"\f028"
+    }
+}
+
