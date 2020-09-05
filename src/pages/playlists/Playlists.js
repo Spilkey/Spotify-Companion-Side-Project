@@ -70,19 +70,41 @@ class Playlists extends Component {
 
     makeSongCards(response) {
         let rows = [];
-        (response.data).forEach(element => {
-            let likedText = element.isLiked ? "liked" : "not liked"
+        let trackData = response.data;
+        let metaData = response.metaData;
+        
+        let topRow = (             
+        <div className="song-row-top song-row">
+            <div className="song-checkbox-parent">Select</div>
+            <div>Liked</div>
+            <div className="song-title">Title</div>
+            <div className="song-artists">Artists</div>
+            <div>Added at</div>
+        </div>);
+        rows.push(topRow);
+
+        (trackData).forEach(element => {
+            let likedText = element.isLiked ? <i class="fa fa-heart"></i> : <i class="fa fa-heart-o"></i>
+            let artists = element.artists;
+            let displayArtists = Object.keys(artists).join(" ") ;  
             let row = (
                 <div className="song-row">
-                    <div className="song-title">{element.name}</div>
+                    <div className="song-checkbox-parent">
+                        <input className="song-checkbox" type="checkbox"/>  
+                    </div>
                     <div>{likedText}</div>
+                    <div className="song-title">{element.name}</div>
+                    <div className="song-artists">{displayArtists}</div>
                     <div>{element.added_at}</div>
                 </div>)
             rows.push(row);
         });
         console.log(response);
         return rows;
-        
+    }
+
+    returnToPlayLists(){
+        this.setState({trackData: null, drilledDown: false});
     }
     render() {
         let response = this.state.playListData;
@@ -91,6 +113,7 @@ class Playlists extends Component {
         let loader = <div className="loader"></div>;
         let parentClass = drilledDown ? "track-grid" : "play-list-grid"
         let content;
+        let backButton;
         if (response) {
             if (!drilledDown) {
                 console.log(response);
@@ -102,8 +125,9 @@ class Playlists extends Component {
                 if (trackData) {
                     let cards = this.makeSongCards(trackData);
                     content = cards.map((value) =>
-                        <div>{value}</div>
+                        <div className="track-grid-item">{value}</div>
                     )
+                    backButton = <button onClick={()=> this.returnToPlayLists()}>Back</button>;
                 } else {
                     content = loader;
                 }
@@ -115,6 +139,7 @@ class Playlists extends Component {
         return (
 
             <div className={parentClass}>
+                {backButton}
                 {content}
             </div>
         )
