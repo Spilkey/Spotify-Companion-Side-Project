@@ -6,6 +6,8 @@ class Home extends Component {
         super(props);
         let images = props.data.images || null;
         this.state = { image: images};
+
+        this.logout = this.props.logout;
     }
 
     render() {

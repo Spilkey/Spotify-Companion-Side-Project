@@ -12,12 +12,16 @@ import './following.css'
 class Following extends Component {
     constructor(props) {
         super(props);
-        this.state = { artistData: null, dataLoaded: false, after: null, current: '', pageNum: 1, total: null}
+        this.state = {artistData: null, dataLoaded: false, after: null, current: '', pageNum: 1, total: null}
         this._isMounted = false;
 
         this.pageForward = this.pageForward.bind(this)
         this.pageBack = this.pageBack.bind(this)
         this.beforeStack = [];
+        this.storage = new Storage();
+
+        this.logout = this.props.logout;
+
     }
 
     getFollowedInitial(after = null){
@@ -32,21 +36,30 @@ class Following extends Component {
             .then(data => {
                 if(data.data.error){
                     if(data.data.error.status == 401){
-                        (new Tokens()).refreshToken((new Storage()).getRefreshToken())
-                        .then(data =>(new Storage().setAccessToken(data.access_token)));
+                        (new Tokens()).refreshToken(this.storage.getRefreshToken())
+                        .then(data =>{
+                            if(data.access_token){
+                                this.storage.setAccessToken(data.access_token);
+                                this.getFollowed(after);
+                            }else{
+                                this.logout();
+                            }
+                        });
                     }
+                }else{
+                    let pageNum = this.beforeStack.length + 1;
+                    let nextArtist = data.data.after;
+                    let current = data.data.current;
+                    let total = data.data.total;
+    
+                    this.setState({ artistData: data, 
+                                    dataLoaded: true, 
+                                    after: nextArtist, 
+                                    current: current, 
+                                    pageNum: pageNum, 
+                                    total: total});
                 }
-                let pageNum = this.beforeStack.length + 1;
-                let nextArtist = data.data.after;
-                let current = data.data.current;
-                let total = data.data.total;
 
-                this.setState({ artistData: data, 
-                                dataLoaded: true, 
-                                after: nextArtist, 
-                                current: current, 
-                                pageNum: pageNum, 
-                                total: total});
             });
      }
 

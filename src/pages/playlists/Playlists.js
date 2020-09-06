@@ -17,20 +17,32 @@ class Playlists extends Component {
         this.state = { playListData: null, drilledDown: false, trackData: null };
         this._isMounted = false;
         this.playListModel = new Playlist();
+        this.storage = new Storage();
+        this.tokens = new Tokens();
+
+        this.logout = this.props.logout;
     }
 
 
     getPlayLists() {
         this.playListModel.getPlayLists()
             .then(data => {
-                this.setState({ playListData: data });
                 if (data.data.error) {
                     if (data.data.error.status == 401) {
-                        (new Tokens()).refreshToken((new Storage()).getRefreshToken())
-                            .then(data => (new Storage().setAccessToken(data.access_token)));
-                        this.getPlayLists();
+                        this.tokens.refreshToken(this.storage.getRefreshToken())
+                        .then(data => {
+                            if(data.access_token){
+                                this.storage.setAccessToken(data.access_token);
+                                this.getPlayLists();
+                            }else{
+                                this.logout();
+                            }
+                        }); 
                     }
+                }else{
+                    this.setState({ playListData: data });
                 }
+
 
             });
     }
@@ -44,13 +56,18 @@ class Playlists extends Component {
         this.setState({ drilledDown: true })
         this.playListModel.getPlayList(playListId)
             .then(data => {
-                this.setState({ trackData: data });
                 if (data.data.error) {
                     if (data.data.error.status == 401) {
                         (new Tokens()).refreshToken((new Storage()).getRefreshToken())
-                            .then(data => (new Storage()).setAccessToken(data.access_token));
-                        this.playListClick(playListId);
+                        .then(data => {
+                            if(data.access_token){
+                                (new Storage()).setAccessToken(data.access_token);
+                                this.playListClick(playListId);
+                            }
+                        });
                     }
+                }else{
+                    this.setState({ trackData: data });
                 }
             });
     }
