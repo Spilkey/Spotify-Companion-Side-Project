@@ -13,17 +13,19 @@ class Playlist {
             redirect: 'follow', // manual, *follow, error
             referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
         }
-        this.access_token = (new Storage()).getAccessToken();
+        ;
     }
 
     async getPlayList(playListId){
-        const response = await fetch(`http://localhost:8888/playlist/get-playlist?playlist_id=${playListId}&access_token=${this.access_token}`, this.requestParams);
+        let access_token = (new Storage()).getAccessToken()
+        const response = await fetch(`http://localhost:8888/playlist/get-playlist?playlist_id=${playListId}&access_token=${access_token}`, this.requestParams);
         let data = await response.json();
         return data;
     }
 
     async getPlayLists() {
-        const response = await fetch(`http://localhost:8888/playlist/get-playlists?access_token=${this.access_token}`, this.requestParams);
+        let access_token = (new Storage()).getAccessToken()
+        const response = await fetch(`http://localhost:8888/playlist/get-playlists?access_token=${access_token}`, this.requestParams);
         let data = await response.json();
         return data;
     }
