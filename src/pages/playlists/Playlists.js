@@ -21,6 +21,8 @@ class Playlists extends Component {
         this.tokens = new Tokens();
 
         this.logout = this.props.logout;
+
+        this.selectedTracks = [];
     }
 
 
@@ -58,10 +60,10 @@ class Playlists extends Component {
             .then(data => {
                 if (data.data.error) {
                     if (data.data.error.status == 401) {
-                        (new Tokens()).refreshToken((new Storage()).getRefreshToken())
+                        this.tokens.refreshToken(this.storage.getRefreshToken())
                         .then(data => {
                             if(data.access_token){
-                                (new Storage()).setAccessToken(data.access_token);
+                                this.tokens.setAccessToken(data.access_token);
                                 this.playListClick(playListId);
                             }
                         });
@@ -101,7 +103,7 @@ class Playlists extends Component {
         rows.push(topRow);
 
         (trackData).forEach(element => {
-            let row = (<SongItem className="song-row" songData={element} selectedItems/>)
+            let row = (<SongItem className="song-row" songData={element} />)
             rows.push(row);
         });
         console.log(response);
@@ -111,6 +113,7 @@ class Playlists extends Component {
     returnToPlayLists(){
         this.setState({trackData: null, drilledDown: false});
     }
+    
     render() {
         let response = this.state.playListData;
         let trackData = this.state.trackData;
