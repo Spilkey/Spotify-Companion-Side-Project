@@ -108,9 +108,9 @@ class Companion extends Component {
                             <a onClick={this.logout}>Logout</a>
                         </div>
                         <main>
-                            <Route exact path="/" component={() => <Home profile={profile} data={detailedProfile}/>} />
-                            <Route exact path="/following" component={() => <Following profile={profile} />} />
-                            <Route exact path="/playlists" component={() => <Playlists />} />
+                            <Route exact path="/" component={() => <Home profile={profile} data={detailedProfile} logout={this.logout}/>} />
+                            <Route exact path="/following" component={() => <Following profile={profile} logout={this.logout}/>} />
+                            <Route exact path="/playlists" component={() => <Playlists logout={this.logout}/>} />
                             {/* <Route path="/contacts" component={Contacts} /> */}
                         </main>
                     </div>
