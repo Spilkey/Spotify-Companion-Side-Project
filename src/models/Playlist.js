@@ -8,7 +8,7 @@ class Playlist {
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
             credentials: 'same-origin', // include, *same-origin, omit
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/x-www-form-urlencoded'
             },
             redirect: 'follow', // manual, *follow, error
             referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
@@ -17,15 +17,35 @@ class Playlist {
     }
 
     async getPlayList(playListId){
-        let access_token = (new Storage()).getAccessToken()
+        let access_token = (new Storage()).getAccessToken();
         const response = await fetch(`http://localhost:8888/playlist/get-playlist?playlist_id=${playListId}&access_token=${access_token}`, this.requestParams);
         let data = await response.json();
         return data;
     }
 
     async getPlayLists() {
-        let access_token = (new Storage()).getAccessToken()
+        let access_token = (new Storage()).getAccessToken();
         const response = await fetch(`http://localhost:8888/playlist/get-playlists?access_token=${access_token}`, this.requestParams);
+        let data = await response.json();
+        return data;
+    }
+
+    async likeTracks(trackIds) {
+        let access_token = (new Storage()).getAccessToken();
+        let newParams = this.requestParams;
+        newParams.method = "POST";
+        const response = await fetch(`http://localhost:8888/tracks/like-tracks?access_token=${access_token}&trackIds[]=${trackIds}`, newParams);
+        let data = await response.json();
+        return data;
+    }
+
+    async unlikeTracks(trackIds) {
+        let access_token = (new Storage()).getAccessToken();
+        let newParams = this.requestParams;
+        newParams.method = "POST";
+        
+        console.log(newParams);
+        const response = await fetch(`http://localhost:8888/tracks/unlike-tracks?access_token=${access_token}&trackIds[]=${trackIds.join(',')}`, newParams);
         let data = await response.json();
         return data;
     }
