@@ -12,7 +12,7 @@ class SongItem extends Component {
         this.songData = this.props.songData;
         this.playerId = `player-${this.songData.id}`
 
-        this.state = {liked : this.songData.isLiked}
+        this.state = {liked : this.songData.isLiked};
 
         //models
         this.playListModel = new Playlist();
@@ -77,6 +77,10 @@ class SongItem extends Component {
 
     }
 
+    setSelected(){
+
+    }
+
     render() {
         let likedText = this.state.liked ? <i className="fa fa-heart"></i> : <i className="fa fa-heart-o"></i>
         let artists = this.songData.artists;
@@ -90,11 +94,12 @@ class SongItem extends Component {
                 <button className="hidden pause-button" ref={this.pauseButton} onClick={(e) => this.audioControl(e, "pause")}></button>
             </div>
         );
-        let songPreview = this.songData.preview ? audioElm : (<div></div>)
+        let songPreview = this.songData.preview ? audioElm : (<div></div>);
+        let selectedClass = this.props.isSelected ? this.props.className + " selected" :  this.props.className;
         return (
-            <div className={this.props.className}>
+            <div className={selectedClass} onClick={this.props.onClick}>
                 <div className="song-checkbox-parent">
-                    <input className="song-checkbox" type="checkbox" />
+                    <input className="song-checkbox" type="checkbox" checked={this.props.isSelected} readOnly/>
                 </div>
                 <div className="heart-song" onClick={this.heartClick}>{likedText}</div>
                 <div className="song-title">{this.songData.name}</div>

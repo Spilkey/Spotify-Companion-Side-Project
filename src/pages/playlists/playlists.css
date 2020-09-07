@@ -1,10 +1,6 @@
 .play-list-grid{
     display: grid;
-    grid-column-start: 2;
-    grid-column-end: 5;
-    grid-row-start: 3;
-    grid-row-end: 4;
-    grid-template-columns: repeat(4, 1fr [col-start]);
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px;
     grid-auto-rows: 200px 200px;
     margin: 30px 20%
@@ -31,11 +27,7 @@
 
 .track-grid{
     display: grid;
-    grid-column-start: 2;
-    grid-column-end: 5;
-    grid-row-start: 3;
-    grid-row-end: 4;
-    grid-template-columns: 15% repeat(1, 1fr [col-start]) 15%;
+    grid-template-columns: 15% repeat(1, 1fr) 15%;
     grid-auto-rows: 50px;
     margin: 10px
 }
@@ -100,13 +92,7 @@
     overflow: hidden;
 }
 
-.song-checkbox{
 
-}
-
-.song-checkbox-parent{
-
-}
 
 
 
