@@ -43,3 +43,29 @@
     text-shadow: 1px 2px 10px black;
     transition: text-shadow 200ms, color 200ms, font-size 200ms;
 }
+
+.selected {
+    background: #ccc;
+    transition: background 200ms;
+}
+
+.selected:hover{
+    background: rgb(153, 153, 153) !important;
+    cursor: pointer;
+    transition: background 200ms;
+}
+
+.selected:hover .heart-song:hover{
+    color: var(--main-hover);
+}
+
+.song-checkbox{
+    height: 15px;
+    width: 15px;
+}
+
+.song-checkbox-parent{
+    display: flex;
+    align-items: center;
+    padding: 0px 25px !important
+}
