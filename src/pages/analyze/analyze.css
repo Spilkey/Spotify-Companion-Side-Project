@@ -3,12 +3,12 @@
     align-items: center;
     justify-content: center;
     margin-top: 50px;
-    height: 400px
+    height: 200px
 }
 
 .analyze-link{
-    height: 200px;
-    width: 300px;
+    height: 150px;
+    width: 200px;
     border-radius: 20px;
     box-shadow: 1px 2px 20px darkgrey;
     display: flex;
@@ -21,8 +21,8 @@
 }
 
 .analyze-link:hover{
-    height: 210px;
-    width: 310px;
+    height: 160px;
+    width: 210px;
     transition:box-shadow 200ms, height 200ms, width 200ms, transform 200ms ease-in-out; 
     cursor: pointer;
     box-shadow: 1px 2px 20px rgb(87, 87, 87);

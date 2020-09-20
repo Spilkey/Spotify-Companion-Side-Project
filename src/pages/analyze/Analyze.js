@@ -14,12 +14,28 @@ import './analyze.css'
 
 
 class Analyze extends Component {
+    constructor(props){
+        super(props);
+        this.logout = this.props.logout;
+        this.state = {whichPage: 0};
+    }
 
+    selectPage(page){
+        this.setState({whichPage: page})
+    }
     render(){
+        let page = this.state.whichPage;
+        let content;
+        if(page){
+            content = page === 1 ? <AnalyzePlaylist/> : <AnalzyeSong/>
+        }
         return (
-            <div className="analyze-top">
-                <div className="analyze-link">Analyze Playlists</div>
-                <div className="analyze-link">Analyze Songs</div>
+            <div>
+                <div className="analyze-top">
+                    <div onClick={e => this.selectPage(1)} className="analyze-link">Analyze Playlists</div>
+                    <div onClick={e => this.selectPage(2)} className="analyze-link">Analyze Songs</div>
+                </div>
+                {content}
             </div>
         )
     }
