@@ -16,6 +16,7 @@ import './App.css';
 import Home from './pages/home/Home'
 import Following from './pages/following/Following'
 import Playlists from './pages/playlists/Playlists'
+import Analyze from './pages/analyze/Analyze'
 
 // Models 
 import UserProfile from './models/UserProfile'
@@ -104,6 +105,7 @@ class Companion extends Component {
                                 <Link to={`/`}>Home</Link>
                                 <Link to={`/following`}>Following</Link>
                                 <Link to={'/playlists'}>Playlists</Link>
+                                <Link to={'/analyze'}>Analyze</Link>
                             </div>
                             <a onClick={this.logout}>Logout</a>
                         </div>
@@ -111,6 +113,7 @@ class Companion extends Component {
                             <Route exact path="/" component={() => <Home profile={profile} data={detailedProfile} logout={this.logout}/>} />
                             <Route exact path="/following" component={() => <Following profile={profile} logout={this.logout}/>} />
                             <Route exact path="/playlists" component={() => <Playlists logout={this.logout}/>} />
+                            <Route exact path="/analyze" component={() => <Analyze logout={this.logout}/>} />
                             {/* <Route path="/contacts" component={Contacts} /> */}
                         </main>
                     </div>
