@@ -1,0 +1,51 @@
+.analyze-bottom-grid{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-gap: 20px;
+    grid-auto-rows: 50px 50px;
+    margin: 30px 10%
+}
+
+.search{
+    grid-column: 2;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    height: 25px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.search input {
+    width: 90%;
+    border: 0px;
+    height: 100%;
+
+}
+.search i {
+    width: 5%;
+}
+.my-playlist-row{
+    grid-column: 2;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 1px 20px rgb(231, 231, 231);
+    transition: box-shadow 200ms;
+}
+
+.my-playlist-row:hover{
+    box-shadow: 1px 1px 20px grey;
+    transition: box-shadow 200ms;
+    cursor: pointer;
+}
+
+.spacer{
+    grid-column: 2;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
