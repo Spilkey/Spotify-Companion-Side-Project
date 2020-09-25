@@ -1,9 +1,14 @@
 .analyze-bottom-grid{
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    grid-gap: 20px;
-    grid-auto-rows: 50px 50px;
+    display: flex;
+    justify-content: space-around;
     margin: 30px 10%
+}
+
+.analyze-bottom-grid-graphs{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+    
 }
 
 .search{
@@ -35,6 +40,7 @@
     justify-content: center;
     box-shadow: 1px 1px 20px rgb(231, 231, 231);
     transition: box-shadow 200ms;
+    padding: 5px;
 }
 
 .my-playlist-row:hover{
@@ -48,4 +54,45 @@
     text-align: center;
     font-size: 1.5rem;
     font-weight: bold;
+}
+
+.column{
+    display: grid;
+    grid-template-columns: 0.1fr min(500px, 100vw) 0.1fr;
+    grid-auto-rows: 50px 50px;
+    grid-gap: 10px;
+    height: 500px;
+    overflow: auto;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.not-visible{
+    visibility: hidden;
+}
+
+/* width */
+.column::-webkit-scrollbar {
+    width: 15px;
+    margin: 2px
+}
+  
+/* Track */
+.column::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 15px;
+}
+
+/* Handle */
+.column::-webkit-scrollbar-thumb {
+    background: #888; 
+    border: 4px solid white;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+.column::-webkit-scrollbar-thumb:hover {
+    background: #555; 
 }
