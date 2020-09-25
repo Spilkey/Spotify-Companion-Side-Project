@@ -32,7 +32,7 @@ main{
 .top-navybar a:hover{
     text-decoration: none;
     color: var(--main-hover);
-    font-size: 1.55rem;
+    /* font-size: 1.55rem; */
     transition: font-size 200ms;
     cursor: pointer;
 }

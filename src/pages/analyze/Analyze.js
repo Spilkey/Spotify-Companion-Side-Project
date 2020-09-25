@@ -7,27 +7,37 @@ import './analyze.css'
 
 
 class Analyze extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.logout = this.props.logout;
-        this.state = {whichPage: 0};
+        this.state = { whichPage: 0 };
     }
 
-    selectPage(page){
-        this.setState({whichPage: page})
+    selectPage(page) {
+        this.setState({ whichPage: page })
     }
-    render(){
+    render() {
         let page = this.state.whichPage;
         let content;
-        if(page){
-            content = page === 1 ? <AnalyzePlaylist/> : <AnalzyeSong/>
-        }
-        return (
-            <div>
+        let buttons;
+        if (page) {
+            content = page === 1 ? <AnalyzePlaylist /> : <AnalzyeSong />
+            buttons = (
+                <div className="analyze-top back">
+                    <div onClick={e => this.selectPage(0)} logout={this.logout} className="analyze-link back">Back</div>
+                </div>
+            );
+        } else {
+            buttons = (
                 <div className="analyze-top">
                     <div onClick={e => this.selectPage(1)} logout={this.logout} className="analyze-link">Analyze Playlists</div>
                     <div onClick={e => this.selectPage(2)} logout={this.logout} className="analyze-link">Analyze Songs</div>
                 </div>
+            );
+        }
+        return (
+            <div>
+                {buttons}
                 {content}
             </div>
         )
