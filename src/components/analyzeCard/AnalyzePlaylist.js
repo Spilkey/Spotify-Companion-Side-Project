@@ -3,13 +3,16 @@ import React, { Component } from 'react';
 import './components.css'
 import '../spinner.css'
 
-import VisualizeFeatures from './Visualize'
+import VisualizeFeatures from './Visualize';
+import AnalyzePlaylistRow from './AnalyzePlaylistRow';
 
 import Playlist from '../../models/Playlist'
 import Storage from '../../models/Storage'
 import Tokens from '../../models/Tokens'
 import Search from '../../models/Search'
 import Analyze from '../../models/Analyze'
+import appContent from '../../models/ContentDesc'
+
 
 
 
@@ -126,11 +129,41 @@ class AnalyzePlaylist extends Component {
     createGraphs(analysisData) {
         let graphs = [];
         let features = analysisData.results;
-        for (const feature in features) {
-            console.log(feature);
-            let graph = <VisualizeFeatures data={features[feature]} type='bubble'/>;
-            graphs.push(graph);
-        }
+
+        let duration = <AnalyzePlaylistRow data={features.duration} 
+                                           title="Duration" 
+                                           desc={appContent.analyze.duration}
+                                           img=""
+                                           faClass="fa-clock-o"
+                                           label="Durations in Seconds" />
+
+        let key = <AnalyzePlaylistRow data={features.key} 
+                                      title="Key" 
+                                      desc={appContent.analyze.key}
+                                      img="images/analyze-images/key-signatures-chart.png"
+                                      label="Key Signature" />
+
+        let tempo = <AnalyzePlaylistRow data={features.tempo} 
+                                      title="Tempo" 
+                                      desc={appContent.analyze.tempo}
+                                      img="images/analyze-images/tempo.png"
+                                      label="BPM" />
+
+        let timeSig = <AnalyzePlaylistRow data={features.time_sig} 
+                                      title="Time Signature" 
+                                      desc={appContent.analyze.timeSig}
+                                      img="images/analyze-images/time-signature.png"
+                                      label="Number of Beats per Measure" />
+        // for (const feature in features) {
+        //     console.log(feature);
+        //     let graph = (<VisualizeFeatures data={features[feature]} title={feature}/>);
+        //     graphs.push(graph);
+        // }
+        graphs.push(duration);
+        graphs.push(key);
+        graphs.push(tempo);
+        graphs.push(timeSig);
+        // graphs.push(duration2);
         return graphs;
     }
 
@@ -155,10 +188,14 @@ class AnalyzePlaylist extends Component {
             mainContent = (<div className="loader"></div>);
         } else if (analyzeData) {
             let graphs = this.createGraphs(analyzeData);
-            let playlistData = this.state.playListData;
+            let selectedPlayListData = this.state.selectedPlayListData;
             mainContent = (
-                <div className="analyze-bottom-grid-graphs">
-                    {graphs}
+                <div>
+                    <h2 className="playlist-heading" >{selectedPlayListData.name || selectedPlayListData.playListName || "No title"}</h2>
+                    <h3 className="playlist-heading"> Total Songs: {analyzeData.results.duration.length}</h3>
+                    <div className="analyze-bottom-grid-graphs">
+                        {graphs}
+                    </div>
                 </div>
             );
         } else {
