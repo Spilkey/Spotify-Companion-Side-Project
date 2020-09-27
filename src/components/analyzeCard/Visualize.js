@@ -8,14 +8,14 @@ class VisualizeFeatures extends Component {
         this.chartRef = React.createRef();
 
         this.title = this.props.title || "";
-        this.dataTitle = this.props.dataTitle || "";
+        this.axisLabels = this.props.axisLabels || {x: "NO LABEL", y: "NO LABEL"};
     }
 
     componentDidMount(){
-        this.charter = new Charter(this.props.data, this.title, this.dataTitle, this.chartRef.current.getContext('2d'));
+        this.charter = new Charter(this.props.data, this.axisLabels, this.title, this.chartRef.current.getContext('2d'));
     }
     render(){
-        let chart = (<canvas ref={this.chartRef} width="90%" height="90%" ></canvas>);
+        let chart = (<canvas ref={this.chartRef} width="100%" height="50px" ></canvas>);
         
         return ( 
             <div>
