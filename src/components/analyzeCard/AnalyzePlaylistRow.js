@@ -17,7 +17,7 @@ class AnalyzePlaylistRow extends Component {
         if (this.img) {
             middleImg = (
                 <div>
-                    <img src={this.img} width="100%" height="100%" />
+                    <img src={this.img} width="100%" height="300px" />
                 </div>
             );
         }else{
@@ -31,7 +31,7 @@ class AnalyzePlaylistRow extends Component {
         let labels = {x: this.label, y: "Amount of Songs"};
         return (
             <div className="playlist-analyzed-row">
-                <div dangerouslySetInnerHTML={{__html: this.desc}}>
+                <div className="analyze-desc" dangerouslySetInnerHTML={{__html: this.desc}}>
                 </div>
                 {middleImg}
                 <VisualizeFeatures data={this.data} title={this.title} axisLabels={labels}/>
