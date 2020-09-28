@@ -10,6 +10,25 @@
 
     
 }
+.analyze-desc{
+    flex-direction: column;
+}
+.analyze-desc p {
+    font-size: 1.15rem;
+    padding: 20px;
+}
+
+.analyze-desc table {
+    border-collapse: collapse;
+}
+.analyze-desc table th,
+.analyze-desc table td
+{
+    border: 1px solid black;
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+}
 
 .search{
     grid-column: 2;
