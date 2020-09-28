@@ -130,39 +130,85 @@ class AnalyzePlaylist extends Component {
         let graphs = [];
         let features = analysisData.results;
 
-        let duration = <AnalyzePlaylistRow data={features.duration} 
-                                           title="Duration" 
-                                           desc={appContent.analyze.duration}
-                                           img=""
-                                           faClass="fa-clock-o"
-                                           label="Durations in Seconds" />
+        let duration = <AnalyzePlaylistRow data={features.duration}
+            title="Duration"
+            desc={appContent.analyze.duration}
+            img=""
+            faClass="fa-clock-o"
+            label="Durations in Seconds" />
 
-        let key = <AnalyzePlaylistRow data={features.key} 
-                                      title="Key" 
-                                      desc={appContent.analyze.key}
-                                      img="images/analyze-images/key-signatures-chart.png"
-                                      label="Key Signature" />
+        let key = <AnalyzePlaylistRow data={features.key}
+            title="Key"
+            desc={appContent.analyze.key}
+            img="images/analyze-images/key-signatures-chart.png"
+            label="Key Signature" />
 
-        let tempo = <AnalyzePlaylistRow data={features.tempo} 
-                                      title="Tempo" 
-                                      desc={appContent.analyze.tempo}
-                                      img="images/analyze-images/tempo.png"
-                                      label="BPM" />
+        let tempo = <AnalyzePlaylistRow data={features.tempo}
+            title="Tempo"
+            desc={appContent.analyze.tempo}
+            img="images/analyze-images/tempo.png"
+            label="BPM" />
 
-        let timeSig = <AnalyzePlaylistRow data={features.time_sig} 
-                                      title="Time Signature" 
-                                      desc={appContent.analyze.timeSig}
-                                      img="images/analyze-images/time-signature.png"
-                                      label="Number of Beats per Measure" />
-        // for (const feature in features) {
-        //     console.log(feature);
-        //     let graph = (<VisualizeFeatures data={features[feature]} title={feature}/>);
-        //     graphs.push(graph);
-        // }
+        let timeSig = <AnalyzePlaylistRow data={features.time_sig}
+            title="Time Signature"
+            desc={appContent.analyze.timeSig}
+            img="images/analyze-images/time-signature.png"
+            label="Number of Beats per Measure" />
+
+        let acousticness = <AnalyzePlaylistRow data={features.acousticness}
+            title="Acousticness"
+            desc={appContent.analyze.acousticness}
+            img="images/analyze-images/acousticness.png"
+            label="Score" />
+
+        let dance = <AnalyzePlaylistRow data={features.danceability}
+            title="Danceability"
+            desc={appContent.analyze.dance}
+            img="images/analyze-images/danceability.png"
+            label="Score" />
+
+
+        let energy = <AnalyzePlaylistRow data={features.energy}
+            title="Energy"
+            desc={appContent.analyze.energy}
+            img="images/analyze-images/energy.png"
+            label="Score" />
+
+        let instrumental = <AnalyzePlaylistRow data={features.instrumentalness}
+            title="Instrumentalness"
+            desc={appContent.analyze.instrumentalness}
+            img="images/analyze-images/instrumentalness.png"
+            label="Score" />
+
+        let speechiness = <AnalyzePlaylistRow data={features.speechiness}
+            title="Speechiness"
+            desc={appContent.analyze.speechiness}
+            img="images/analyze-images/speechiness.png"
+            label="Score" />
+
+        let liveness = <AnalyzePlaylistRow data={features.liveness}
+            title="Liveness"
+            desc={appContent.analyze.liveness}
+            img="images/analyze-images/liveness.png"
+            label="Score" />
+
+        let loudness = <AnalyzePlaylistRow data={features.loudness}
+            title="Loudness"
+            desc={appContent.analyze.loudness}
+            img="images/analyze-images/loudness.png"
+            label="Score" />
+
         graphs.push(duration);
         graphs.push(key);
-        graphs.push(tempo);
         graphs.push(timeSig);
+        graphs.push(tempo);
+        graphs.push(acousticness);
+        graphs.push(dance);
+        graphs.push(energy);
+        graphs.push(instrumental);
+        graphs.push(speechiness);
+        graphs.push(liveness);
+        graphs.push(loudness);
         // graphs.push(duration2);
         return graphs;
     }
