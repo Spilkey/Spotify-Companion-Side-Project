@@ -19,14 +19,14 @@ class Search {
     async searchPlaylists(value){
         console.log(value);
         let access_token = (new Storage()).getAccessToken();
-        const response = await fetch(`http://localhost:8888/search/search-playlists?params=${value}&access_token=${access_token}`, this.requestParams);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND}/search/search-playlists?params=${value}&access_token=${access_token}`, this.requestParams);
         let data = await response.json();
         return data;
     }
 
     async searchSongs(value){
         let access_token = (new Storage()).getAccessToken();
-        const response = await fetch(`http://localhost:8888/search/search-songs?params=${value}&access_token=${access_token}`, this.requestParams);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND}/search/search-songs?params=${value}&access_token=${access_token}`, this.requestParams);
         let data = await response.json();
         return data;
     }

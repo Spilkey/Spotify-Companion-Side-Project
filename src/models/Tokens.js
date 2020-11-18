@@ -1,3 +1,5 @@
+import { redirectUri } from '../settings';
+
 class Tokens {
     constructor(){
         this.requestParams = {
@@ -14,13 +16,13 @@ class Tokens {
     }
 
     async getToken(code){
-        const response = await fetch("http://localhost:8888/auth/swap?code=" + code, this.requestParams);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND}/auth/swap?code=${code}&redirect=${redirectUri}`, this.requestParams);
         let credentials = await response.json();
         return credentials;
     }
 
     async refreshToken(refresh) {
-        const response = await fetch("http://localhost:8888/auth/refresh_token?refresh_token=" + refresh, this.requestParams);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND}/auth/refresh_token?refresh_token=` + refresh, this.requestParams);
         let credentialsNew = await response.json();
         return credentialsNew;
     }
