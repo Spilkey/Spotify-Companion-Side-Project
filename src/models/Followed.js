@@ -17,7 +17,7 @@ class Followed {
 
     async getFollowedArtists(){
         let query = `?${this.access_token}${this.after}`
-        const response = await fetch(`http://localhost:8888/follow/following${query}`, this.requestParams);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND}/follow/following${query}`, this.requestParams);
         let data = await response.json();
         return data;
     }

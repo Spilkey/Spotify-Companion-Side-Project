@@ -8,7 +8,7 @@ class Analyze {
 
     async getPlayListAnalysis(playlist_id){
         let access_token = (new Storage()).getAccessToken();
-        const response = await fetch(`http://localhost:8888/analysis/analyze-playlist?playlist_id=${playlist_id}&access_token=${access_token}`, this.requestParams);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND}/analysis/analyze-playlist?playlist_id=${playlist_id}&access_token=${access_token}`, this.requestParams);
         let data = await response.json();
         return data;
     }

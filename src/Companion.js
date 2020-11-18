@@ -73,6 +73,7 @@ class Companion extends Component {
     }
 
     onSuccess = response => {
+        console.log(response);
         this.getToken(response)
     }
 

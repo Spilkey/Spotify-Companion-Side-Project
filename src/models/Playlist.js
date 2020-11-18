@@ -18,14 +18,14 @@ class Playlist {
 
     async getPlayList(playListId){
         let access_token = (new Storage()).getAccessToken();
-        const response = await fetch(`http://localhost:8888/playlist/get-playlist?playlist_id=${playListId}&access_token=${access_token}`, this.requestParams);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND}/playlist/get-playlist?playlist_id=${playListId}&access_token=${access_token}`, this.requestParams);
         let data = await response.json();
         return data;
     }
 
     async getPlayLists() {
         let access_token = (new Storage()).getAccessToken();
-        const response = await fetch(`http://localhost:8888/playlist/get-playlists?access_token=${access_token}`, this.requestParams);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND}/playlist/get-playlists?access_token=${access_token}`, this.requestParams);
         let data = await response.json();
         return data;
     }
@@ -34,7 +34,7 @@ class Playlist {
         let access_token = (new Storage()).getAccessToken();
         let newParams = this.requestParams;
         newParams.method = "POST";
-        const response = await fetch(`http://localhost:8888/tracks/like-tracks?access_token=${access_token}&trackIds[]=${trackIds}`, newParams);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND}/tracks/like-tracks?access_token=${access_token}&trackIds[]=${trackIds}`, newParams);
         let data = await response.json();
         return data;
     }
@@ -45,7 +45,7 @@ class Playlist {
         newParams.method = "POST";
         
         console.log(newParams);
-        const response = await fetch(`http://localhost:8888/tracks/unlike-tracks?access_token=${access_token}&trackIds[]=${trackIds.join(',')}`, newParams);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND}/tracks/unlike-tracks?access_token=${access_token}&trackIds[]=${trackIds.join(',')}`, newParams);
         let data = await response.json();
         return data;
     }
