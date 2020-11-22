@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Spotify Companion",
+  "name": "Spotify Companion App",
   "start_url" : "/",
   "icons": [
     {
