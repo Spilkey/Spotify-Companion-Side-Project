@@ -21,31 +21,26 @@ class Home extends Component {
                                 <h3>Following</h3>
                                 <div className='line'></div>
                                 <p>
-                                    Explore all the artist you follow. Click on idividual artists to learn some quick info about them. 
-                                </p>
-                            
+                                    Explore all the artist you follow. Click on individual artists to learn some quick info about them. 
+                                </p>                          
                         </div>
                     </Link>
                     <Link to="/playlists">
-                        <div className='home-screen-content'>
-                                                    
+                        <div className='home-screen-content'>                                                   
                                 <h3>Playlists</h3>
                                 <div className='line'></div>
                                 <p>
                                     Examine any of your playlists and quickly select songs to move them, follow their artists, and move to other playlists.
                                 </p>
-                            
                         </div>
                     </Link>
                     <Link to="/analyze">
-                        <div className='home-screen-content'>
-                            
+                        <div className='home-screen-content'>                           
                                 <h3>Analyze</h3>
                                 <div className='line'></div>
                                 <p>
-                                Analyze playlist's and songs. Select a from either playlists or songs and learn indepth knowlegde about the music.  
+                                Analyze playlists and songs. Select a from either playlists or songs and learn indepth knowledge about the music.  
                                 </p>
-                            
                         </div>
                     </Link>
                     <Link to="/">
