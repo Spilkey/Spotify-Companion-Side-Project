@@ -28,9 +28,7 @@ class Profile extends Component {
         }
         
         return (
-            <div className="profile-top">
-                {this.props.imageDiv}
-                {listItems}
+            <div>
             </div>
         )
     }

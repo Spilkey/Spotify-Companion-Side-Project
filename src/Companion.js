@@ -91,13 +91,36 @@ class Companion extends Component {
         this.storage.clearStorage();
     }
 
+    getProfilePic(detailedProfile, displayName){
+        console.log(detailedProfile)
+        let imageDiv;
+        const imageUrl= detailedProfile.images;
+
+        if(Array.isArray(imageUrl) && imageUrl.length > 0){
+            imageDiv = (
+            <div className='user-profile-pic'>
+                <div>{displayName}</div>
+                <img src={imageUrl[0].url}/>
+            </div>)
+        }else{
+            imageDiv = (
+                <div className='user-profile-pic'>
+                    <div>{displayName}</div>
+                    <img src="images/profile-ph.png"/>
+                </div>)
+        }
+        return imageDiv;
+    }
+
     render() {
         const isAuthed = this.state.isAuthed;
-        const profile = this.state.apiResponse.profileData || {};
+        const profile = {};
         const detailedProfile = this.state.apiResponse.data || {}
+        const displayName = this.state.apiResponse.displayName || "";
         let content;
 
         if (isAuthed) {
+            let imageDiv = this.getProfilePic(detailedProfile, displayName);
             content =
                 <Router>
                     <div>
@@ -108,7 +131,10 @@ class Companion extends Component {
                                 <Link to={'/playlists'}>Playlists</Link>
                                 <Link to={'/analyze'}>Analyze</Link>
                             </div>
-                            <a onClick={this.logout}>Logout</a>
+                            <div class='right-nav'>
+                                {imageDiv}
+                                <a onClick={this.logout}>Logout</a>
+                            </div>
                         </div>
                         <main>
                             <Route exact path="/" component={() => <Home profile={profile} data={detailedProfile} logout={this.logout}/>} />
@@ -122,11 +148,24 @@ class Companion extends Component {
         } else {
             content =
                 <div className="home-not-loggedin">
-                    <SpotifyLogin className="spotify-button" buttonText="Login With Spotify" clientId={clientId}
-                        redirectUri={redirectUri}
-                        onRequest={this.onRequest}
-                        onSuccess={this.onSuccess}
-                        onFailure={this.onFailure} />
+                    <div className='home-page-naviagtion'>
+                        <div className='nav-left'>
+                            <img src='images/spotify-companion-logo.png' height='80px'></img>
+                            <h1>Spotify Companion App</h1>
+                        </div>
+                        <img src='images/listen-on-spotify-logo.png' height='80px'></img>
+                        <SpotifyLogin className="spotify-button" buttonText="Login With Spotify" clientId={clientId}
+                            redirectUri={redirectUri}
+                            onRequest={this.onRequest}
+                            onSuccess={this.onSuccess}
+                            onFailure={this.onFailure} />
+                    </div>
+                    <div className='main-image'>
+                        <p className='black-box'>
+                            Welcome to my Spotify Companion App. In this app you will be able to explore your followed artists, 
+                            scroll through your playlists, and analyze public playlists.
+                        </p>
+                    </div>
                 </div>
         }
         return (content);

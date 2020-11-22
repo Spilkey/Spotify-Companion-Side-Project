@@ -4,28 +4,22 @@ import Profile from '../../components/profile/Profile'
 class Home extends Component {
     constructor(props){
         super(props);
-        let images = props.data.images || null;
+        let images = this.props.data.images || null;
         this.state = { image: images};
 
         this.logout = this.props.logout;
     }
 
     render() {
-        let imageDiv;
-        const imageArr= this.state.image
-        if(Array.isArray(imageArr) && imageArr.length){
-            imageDiv = <img src={this.state.image[0]}/>
-        }else{
-            imageDiv = <img src="images/profile-ph.png"/>
-        }
-        return (
-            <div>
-                <Profile profile={this.props.profile} imageDiv={imageDiv}> 
-                </Profile>
 
-                <p>
-                    
-                </p>
+        return (
+            <div class='home-screen-main-wrapper'>
+                <div class='home-screen-main'>
+                    <div className='home-screen-content'></div>
+                    <div className='home-screen-content'></div>
+                    <div className='home-screen-content'></div>
+                    <div className='home-screen-content'></div>
+                </div>
             </div>
         )
     }
